@@ -80,3 +80,120 @@ diffArray(["diorite", "andesite", "grass", "dirt", "pink wool", "dead shrub"], [
 
 
 
+
+//takes multiple arrays and returns array of unique values in original order
+function uniteUnique(arr) {
+  //initializes answer variable
+  let newArr=[];
+  //iterates through all given arrays
+  for ( let i = 0; i < arguments.length; i++ ) {
+    //iterates through length of each array
+    for ( let j = 0; j < arguments[i].length; j++ ) {
+      //if the answer array does not include the current number, pushes it onto the end
+      if ( newArr.includes(arguments[i][j]) == false ) {
+      newArr.push(arguments[i][j]);
+      }
+    }
+  }
+  return newArr
+}
+
+uniteUnique([1, 3, 2], [5, 2, 1, 4], [2, 1]);
+
+
+
+
+
+
+
+
+//Takes a number greater than or equal to 1 and returns sum of all odd Fibonnaci numbers less than that number
+function sumFibs(num) {
+  //sets fibs equal to answer array for one
+  let fibs = [1, 1];
+  //iterates through numbers from two to given number
+  for ( let i = 2; i <= num; i++ ) {
+    //if the current number is equal to the sum of the last two nums in answer array, push number onto answer array
+    if ( i == (fibs[fibs.length-1]+fibs[fibs.length-2])) {
+     fibs.push(i);
+    }
+  }
+  //sets final answer array to only the odd values from first answer array
+  const finalArray = fibs.filter(fib => fib%2 === 1)
+  let sum = 0;
+  //sets final answer equal to the sum of the numbers in the final array
+  const finalSum = finalArray.reduce((previousNum, newNum) =>  previousNum + newNum, sum)
+  return finalSum;
+}
+
+sumFibs(10);
+
+
+
+
+
+
+
+//Finds smallest common multiple of two numbers that is also divisible by the numbers between them 
+function smallestCommons(arr) {
+  //initializes variables since numbers can be given in either order
+  let bigNum;
+  let smallNum;
+  //sets smallNum to smaller number and bigNum to bigger number
+  if (arr[0] === arr[1]) {
+    return arr[0]
+  } else if (arr[0] > arr[1]) {
+    bigNum = arr[0];
+    smallNum = arr[1];
+    return getLcm(smallNum, bigNum);
+  } else {
+    bigNum = arr[1];
+    smallNum = arr[0]; 
+    return getLcm(smallNum, bigNum);
+  }
+}
+//gets the least common multiple (as defined by problem)
+function getLcm(small, big) {
+  //iterates through starting with a the product of the two, then adding that number with each iteration
+  let startNum = small*big;
+  //iterates until arrAllDivisible returns true, returns value to smallestCommons
+  while (areAllDivisible(startNum, small, big) === false) {
+    startNum += small*big;
+  }
+  return startNum;
+}
+//checks if value is divisible by all values in range between numbers
+function areAllDivisible(startNum, small, big) {
+  let answer = true;
+  
+  //if any of the numbers in the range are not divisible, returns false, otherwise returns true
+  for ( let i = small+1; i < big; i++ ) {
+    if (startNum%i === 0) {
+      continue
+    } else {
+      answer = false;
+    }
+  }
+  return answer;
+}
+
+smallestCommons([1,5]);
+
+
+
+
+
+
+
+//converts html entities into their html entities
+function convertHTML(str) {
+  
+  let newStr = str.replaceAll("&", "&amp;");
+  newStr = newStr.replaceAll('<', "&lt;");
+  newStr = newStr.replaceAll('>', "&gt;");
+  newStr = newStr.replaceAll("\'", '&apos;');
+  newStr = newStr.replaceAll('\"', '&quot;');
+  return newStr;
+}
+
+convertHTML("Dolce & Gabbana");
