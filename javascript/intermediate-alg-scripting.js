@@ -197,3 +197,39 @@ function convertHTML(str) {
 }
 
 convertHTML("Dolce & Gabbana");
+
+
+
+
+
+
+
+/*Create a function that sums two arguments together. If only one argument is provided
+provides return a function that expects one argument and returns the sum.*/
+function addTogether() {
+  //declares an undefined answer variable
+  let answer;
+  //returns undefined if any of the arguments are not numbers
+  for (let i = 0; i < arguments.length; i++) {
+    if (typeof arguments[i] != 'number') {
+      return answer;
+    } 
+  }
+  //if only one argument is provided, returns a function that will check if the next number is a number and add it to itself if so
+  if ( arguments.length === 1 ) {
+    let firstNum = arguments[0]
+    answer = function(num) {
+      if (typeof num != 'number') {
+      return undefined;
+    }
+      return num + firstNum;
+    }
+  } 
+  //returns the two numbers added together if two numbers are provided as arguments
+  else {
+    answer = arguments[0] + arguments[1];
+  }
+  return answer
+}
+
+console.log(addTogether(2)([3]));
