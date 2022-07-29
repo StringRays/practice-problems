@@ -20,7 +20,7 @@ console.log(change)
     return answerObj;
   }
  
- /*Starting at largest bill, that is less than change needed, iterates through the values.
+ /*Starting at largest bill that is less than change needed, iterates through the values.
   At each bill value, while the change value is greater than that bill value, 
   adds that bill value to a counter while subtracting it from the cash register drawer
   and from the change needed value. Finally, pushes the non zero values onto an answer array*/
