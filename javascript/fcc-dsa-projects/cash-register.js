@@ -1,19 +1,13 @@
+//takes price, the cash given by customer, and the cash currently in drawer(cid) in array, returns object with status and change in array
 const checkCashRegister = function(price, cash, cid) {
-
   const answerObj = {
   };
-  //gets the change needed in dollars
   let change = (cash - price);
-  //sum cash in drawer in dollars
   let sumCID = cid.flat().filter(elem => (typeof elem == 'number')).reduce((elemOne, elemTwo) => elemOne + elemTwo, 0).toFixed(2);
-console.log(change)
   let changeArray = [1, 5, 10, 25, 100, 500, 1000, 2000, 10000];
-  //let changeArray = [.01, .05, .10, .25, 1.00, 5.00, 10.00, 20.00, 100.00];
   let answerChange = [];
-  //finds the largest currency value less than the change needed
   const endIndex = ((change*100) > 10000) ? 8 : changeArray.findIndex((elem) =>  elem > change*100);
  
-  //if the change needed equals the cash in drawer, returns required result
   if ( sumCID == change ){
     answerObj['status'] = "CLOSED";
     answerObj['change'] = cid;
